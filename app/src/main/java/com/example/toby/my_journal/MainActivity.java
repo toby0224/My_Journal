@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // does nothing
+
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
