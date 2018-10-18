@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">My Journal</string>
+    <string name="title_home">Home</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="title_maps">Maps</string>
+    <string name="title_entry">New Entry</string>
+    <string name="google_maps_key">AIzaSyDsFs7tLOSBlST7fLri6MNpk_SFRn6paAs</string>
+
+
+
+    <string name="entry_message"> this is entry message</string>
+</resources>
