@@ -7,12 +7,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-public class Maps extends AppCompatActivity {
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.LatLng;
+
+
+public class Maps extends AppCompatActivity implements OnMapReadyCallback {
+
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -50,6 +63,13 @@ public class Maps extends AppCompatActivity {
     };
 
 
+    @Override
+    public void onMapReady(GoogleMap map) {
+        LatLng sydney = new LatLng(-33.852, 151.211);
+        map.addMarker(new MarkerOptions().position(sydney)
+                .title("Marker in Sydney"));
+        map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
 
 
 }
