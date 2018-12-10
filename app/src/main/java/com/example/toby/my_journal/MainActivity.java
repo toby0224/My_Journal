@@ -3,6 +3,9 @@ package com.example.toby.my_journal;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -14,6 +17,9 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+     private DBHelper myDB;
+     private SQLiteDatabase mDatabase;
+
     private TextView mTextMessage;
 
     @Override
@@ -22,12 +28,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mTextMessage = (TextView) findViewById(R.id.message);
+        //myDB = new DBHelper(this);
+        myDB = new DBHelper(getApplicationContext());
+        mDatabase = myDB.getReadableDatabase();
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM journal_table ;", null);
+
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     }
-
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -57,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+
+
+    // code for add entry button
+
+
+
 
 
 
