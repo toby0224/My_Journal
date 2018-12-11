@@ -8,36 +8,23 @@
     tools:context=".MainActivity">
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
-
-
-
 
         <!-- list of items in scroll view -->
         <ScrollView
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:scrollbarStyle="insideOverlay"
             android:scrollbars="vertical">
 
-            <LinearLayout
-                android:id="@+id/itemContainer"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+
+
                 <!-- LIST OF ITEMS GOES HERE -->
 
 
-            </LinearLayout>
         </ScrollView>
 
-    </RelativeLayout>
 
 
     <android.support.design.widget.BottomNavigationView
