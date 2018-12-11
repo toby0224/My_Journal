@@ -15,6 +15,7 @@ import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -85,8 +86,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void addData(Journal entry) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
+
         values.put(KEY_TASK_ID, entry.getID());                     // id
         values.put(KEY_TITLE, entry.getTitle());                    // title
         values.put(KEY_CONTENT, entry.getContent());                // content
@@ -99,9 +100,39 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
+
+    // get all data
+    public List<Journal> getAllData() {
+            List<Journal> dataList = new ArrayList<Journal>();
+            // select all
+        String selectQR = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQR, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+
+
+                Journal journal = new Journal();
+                journal.setID(Integer.parseInt(cursor.getString(0)));
+                journal.setTitle(cursor.getString(1));
+                journal.setContent(cursor.getString(2));
+                journal.setDate(cursor.getString(3));
+                journal.setTime(cursor.getString(4));
+                journal.setLocation(cursor.getString(5));
+
+                dataList.add(journal);
+            } while (cursor.moveToNext());
+        }
+        return dataList;
+
+    }
+
+
+
     // find filter entries and date
     public Journal findEntry(String date) {
-        String query = "Select * FROM " + TABLE_NAME + "WHERE" + KEY_DATE + " = " + "'" + date + "'";
+        String query = "Select * FROM " + TABLE_NAME + " WHERE " + KEY_DATE + " = " + "'" + date + "'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         Journal entry = new Journal();
