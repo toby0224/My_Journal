@@ -10,24 +10,25 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 
-
-
-
-
-
 public class MainActivity extends AppCompatActivity {
 
-     private DBHelper myDB;
-     private SQLiteDatabase mDatabase;
+    private DBHelper mDatabaseHelper;
+    private ListView mListView;
+    private static String TAG = "ListData";
 
     private TextView mTextMessage;
 
@@ -37,15 +38,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mTextMessage = (TextView) findViewById(R.id.message);
-        //myDB = new DBHelper(this);
-        myDB = new DBHelper(getApplicationContext());
-        mDatabase = myDB.getReadableDatabase();
-        Cursor cursor = mDatabase.rawQuery("SELECT * FROM journal_table ;", null);
+        mListView = (ListView) findViewById(R.id.entry_list);
+        mDatabaseHelper = new DBHelper(this);
 
+        populateListView();
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
     }
 
 
@@ -77,19 +76,22 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    public void populateListView() {
+        Log.d(TAG, "populateListView: Displaying data in the ListView.");
 
+        // get the data and append to a list
+        Cursor data = mDatabaseHelper.getData();
+        ArrayList<String> listData = new ArrayList<>();
+        while(data.moveToNext()){
+            listData.add(data.getString(1));
+        }
 
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        mListView.setAdapter(adapter);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
+    private void toastMessage(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 
 }

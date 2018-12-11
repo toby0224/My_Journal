@@ -10,22 +10,12 @@
 
 
         <!-- list of items in scroll view -->
-        <ScrollView
-            android:id="@+id/scroll_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:scrollbarStyle="insideOverlay"
-            android:scrollbars="vertical">
 
 
-
-                <!-- LIST OF ITEMS GOES HERE -->
-
-
-        </ScrollView>
-
-
+    <ListView
+        android:id="@+id/entry_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

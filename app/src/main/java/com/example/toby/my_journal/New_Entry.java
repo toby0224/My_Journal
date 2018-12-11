@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import javax.microedition.khronos.egl.EGLDisplay;
 
@@ -17,11 +18,13 @@ public class New_Entry extends AppCompatActivity {
     EditText titleET;
     EditText contentET;
     Button addButton;
+    DBHelper mDataBaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_entry);
+        mDataBaseHelper = new DBHelper(this);
 
         titleET = (EditText) findViewById(R.id.title);
         contentET = (EditText) findViewById(R.id.content);
@@ -38,7 +41,17 @@ public class New_Entry extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String newEntry = titleET.getText().toString();
+                /** Check and make sure that you are not adding an empty ID entry
+                 * into the databse.
+                 */
+                if (titleET.length() != 0){
+                    addEntry(newEntry);
+                    titleET.setText("");
+                    contentET.setText("");
+                } else {
+                    toastMessage("You must include a title!");
+                }
             }
         });
 
@@ -81,4 +94,17 @@ public class New_Entry extends AppCompatActivity {
         }
     };
 
+    public void addEntry(String newEntry) {
+        boolean insertData = mDataBaseHelper.addData(newEntry);
+
+        if (insertData) {
+            toastMessage("Entry Successfully Added!");
+        } else {
+            toastMessage("Something went wrong");
+        }
+    }
+
+    private void toastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 }
