@@ -16,6 +16,7 @@ public class New_Entry extends AppCompatActivity {
     Button clearButton;
     EditText titleET;
     EditText contentET;
+    Button addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,14 @@ public class New_Entry extends AppCompatActivity {
             public void onClick(View v) {
                 titleET.setText("");
                 contentET.setText("");
+            }
+        });
+
+        addButton = (Button) findViewById(R.id.addButton);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 
