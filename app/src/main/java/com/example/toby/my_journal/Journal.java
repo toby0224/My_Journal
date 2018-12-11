@@ -8,17 +8,17 @@ import org.w3c.dom.Text;
 public class Journal {
     private int id;
     private String title;
-    private String description;
+    private String content;
     private String date;
     private String time;
     private String location;
 
     public Journal() {}
-    public Journal(int id, String title, String description, String date,
+    public Journal(int id, String title, String content, String date,
                    String  time, String location) {
         this.id = id;
         this.title = title;
-        this.description = description;
+        this.content = content;
         this.date = date;
         this.time = time;
         this.location = location;
@@ -40,11 +40,11 @@ public class Journal {
         return this.title;
     }
     // description
-    public void setDescription(String description) {
-        this.description = description;
+    public void setContent(String description) {
+        this.content = content;
     }
-    public String getDescription() {
-        return this.description;
+    public String getContent() {
+        return this.content;
     }
 
     // date
@@ -70,9 +70,6 @@ public class Journal {
     public String getLocation() {
         return this.location;
     }
-
-
-
 
 
 

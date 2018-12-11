@@ -31,23 +31,22 @@ public class DBHelper extends SQLiteOpenHelper {
     // DEFINE THE COLUMN NAMES FOR THE TABLE
     private static final String KEY_TASK_ID = "id";
     private static final String KEY_TITLE = "title";
-    private static final String KEY_DESCRIPTION = "description";
+    private static final String KEY_CONTENT = "content";
     private static final String KEY_DATE = "date";
     private static final String KEY_TIME = "time";
     private static final String KEY_LOCATION = "location";
 
+    private static final String SELECT_QUERY = "SELECT * FROM " + TABLE_NAME;
+    private static final String DROP_QUERY = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
     // 6 columns table
     private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ( "
             + KEY_TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + KEY_TITLE + " STRING, "
-            + KEY_DESCRIPTION + "TEXT, "
+            + KEY_CONTENT + " TEXT, "
             + KEY_DATE + " STRING, "
             + KEY_TIME + " STRING, "
             + KEY_LOCATION + " STRING)";
-
-    private static final String SELECT_QUERY = "SELECT * FROM " + TABLE_NAME;
-    private static final String DROP_QUERY = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
 
 
@@ -56,11 +55,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase database) {
-
-        database.execSQL(CREATE_TABLE);
-
-    }
+    public void onCreate(SQLiteDatabase database) { database.execSQL(CREATE_TABLE); }
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
@@ -88,15 +83,17 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public void addHelper(Journal entry) {
-        ContentValues values = new ContentValues();
-        values.put(KEY_TASK_ID, entry.getID());
-        values.put(KEY_TITLE, entry.getTitle());
-        values.put(KEY_DESCRIPTION, entry.getDescription());
-        values.put(KEY_DATE, entry.getDate());
-        values.put(KEY_TIME, entry.getTime());
-        values.put(KEY_LOCATION, entry.getLocation());
+    public void addData(Journal entry) {
         SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TASK_ID, entry.getID());                     // id
+        values.put(KEY_TITLE, entry.getTitle());                    // title
+        values.put(KEY_CONTENT, entry.getContent());                // content
+        values.put(KEY_DATE, entry.getDate());                      // date
+        values.put(KEY_TIME, entry.getTime());                      // time
+        values.put(KEY_LOCATION, entry.getLocation());              // location
+
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
