@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".New_Entry">
+    tools:context=".New_Entry"
+    android:background="#3EB489">
 
 
         <RelativeLayout
@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="81dp">
+            tools:layout_editor_absoluteY="0dp">
 
                 <Button
                     android:id="@+id/addButton"
@@ -29,48 +29,60 @@
                     android:id="@+id/clearButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/title"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginBottom="8dp"
                     android:text="Clear"
                     tools:layout_editor_absoluteX="282dp"
                     tools:layout_editor_absoluteY="1dp" />
-
-
+                <!--
                 <EditText
-                    android:id="@+id/title"
+                    android:id="@+id/dateET"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_below="@+id/clearButton"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginRight="5dp"
+                    android:background="@drawable/text_box"
+                    android:hint="Date"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:textSize="24dp"/>
+                    -->
+
+                <EditText
+                    android:id="@+id/titleET"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/clearButton"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/text_box"
                     android:hint=" Title"
-                    android:textColor="@color/wallet_holo_blue_light"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="#9400D3"
                     android:textSize="24dp" />
 
                 <EditText
-                    android:id="@+id/content"
+                    android:id="@+id/contentET"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
-                    android:layout_below="@+id/title"
-                    android:gravity="top|left"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
+                    android:layout_below="@+id/titleET"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="70dp"
                     android:background="@drawable/text_box"
-                    android:hint=" Content" />
-
-
+                    android:gravity="top|left"
+                    android:hint=" Content"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp" />
         </RelativeLayout>
-
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/navigation"
@@ -86,3 +98,4 @@
 
 
 </android.support.constraint.ConstraintLayout>
+

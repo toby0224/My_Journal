@@ -14,6 +14,7 @@ import javax.microedition.khronos.egl.EGLDisplay;
 
 public class New_Entry extends AppCompatActivity {
     Button clearButton;
+    EditText dateET;
     EditText titleET;
     EditText contentET;
 
@@ -22,12 +23,13 @@ public class New_Entry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_entry);
 
-        titleET = (EditText) findViewById(R.id.title);
-        contentET = (EditText) findViewById(R.id.content);
+        titleET = (EditText) findViewById(R.id.titleET);
+        contentET = (EditText) findViewById(R.id.contentET);
         clearButton = (Button) findViewById(R.id.clearButton);
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dateET.setText("");
                 titleET.setText("");
                 contentET.setText("");
             }

@@ -42,10 +42,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // 6 columns table
     private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ( "
-            + KEY_TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + KEY_TASK_ID + " INTEGER AUTOINCREMENT, "
             + KEY_TITLE + " STRING, "
             + KEY_CONTENT + " TEXT, "
-            + KEY_DATE + " STRING, "
+            + KEY_DATE + " STRING PRIMARY KEY, "
             + KEY_TIME + " STRING, "
             + KEY_LOCATION + " STRING)";
 

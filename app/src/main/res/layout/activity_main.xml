@@ -9,35 +9,18 @@
 
 
 
-        <!-- list of items in scroll view -->
-        <ScrollView
-            android:id="@+id/scroll_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:scrollbarStyle="insideOverlay"
-            android:scrollbars="vertical">
-
-
-
-                <!-- LIST OF ITEMS GOES HERE -->
-
-
-        </ScrollView>
-
 
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
         android:background="#E5E4E2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation" />
-
-
 
 </android.support.constraint.ConstraintLayout>
