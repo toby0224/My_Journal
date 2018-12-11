@@ -39,8 +39,9 @@ public class Journal {
     public String getTitle() {
         return this.title;
     }
-    // description
-    public void setContent(String description) {
+
+    // content
+    public void setContent(String content) {
         this.content = content;
     }
     public String getContent() {
@@ -67,9 +68,7 @@ public class Journal {
     public void setLocation(String location) {
         this.location = location;
     }
-    public String getLocation() {
-        return this.location;
-    }
+    public String getLocation() { return this.location; }
 
 
 
