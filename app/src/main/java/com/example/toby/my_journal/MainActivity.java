@@ -90,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
         // get the data and append to a list
         Cursor data = mDatabaseHelper.getData();
         ArrayList<String> listData = new ArrayList<>();
+
+
         while(data.moveToNext()){
             listData.add(data.getString(1));
         }

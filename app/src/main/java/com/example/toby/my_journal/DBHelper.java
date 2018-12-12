@@ -24,10 +24,12 @@ import static java.util.Arrays.asList;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DBHelper";
-    private static final String TABLE_NAME = "entry_table";
-    private static final String COL1 = "ID";
-    private static final String COL2 = "Title";
+    private static final String TABLE_NAME = "journal_table";
+    private static final String KEY_ID = "ID";
+    private static final String KEY_TITLE = "Title";
+    private static final String KEY_CONTENT = "Content";
     private static final int DATABASE_VERSION = 1;
+
 
 
 
@@ -37,9 +39,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COL2 + " TEXT)";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " ("
+                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + KEY_TITLE + " STRING, "
+                + KEY_CONTENT + " TEXT)";
+
         db.execSQL(createTable);
+
     }
 
     @Override
@@ -48,12 +54,13 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String entry) {
+    public boolean addData(String title, String content) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL2, entry);
+        contentValues.put(KEY_TITLE, title);
+        contentValues.put(KEY_CONTENT, content);
 
-        Log.d(TAG, "addData: Adding " + entry + " to " + TABLE_NAME);
+        Log.d(TAG, "addData: Adding " + title + " to " + TABLE_NAME);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 

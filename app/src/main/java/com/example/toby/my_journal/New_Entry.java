@@ -14,11 +14,10 @@ import android.widget.Toast;
 import javax.microedition.khronos.egl.EGLDisplay;
 
 public class New_Entry extends AppCompatActivity {
-    Button clearButton;
-    EditText dateET;
     EditText titleET;
     EditText contentET;
     Button addButton;
+    Button clearButton;
     DBHelper mDataBaseHelper;
 
     @Override
@@ -33,7 +32,6 @@ public class New_Entry extends AppCompatActivity {
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dateET.setText("");
                 titleET.setText("");
                 contentET.setText("");
             }
@@ -43,12 +41,13 @@ public class New_Entry extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String newEntry = titleET.getText().toString();
+                String newTitle = titleET.getText().toString();
+                String newContent = contentET.getText().toString();
                 /** Check and make sure that you are not adding an empty ID entry
-                 * into the databse.
+                 * into the database.
                  */
                 if (titleET.length() != 0){
-                    addEntry(newEntry);
+                    addEntry(newTitle, newContent);
                     titleET.setText("");
                     contentET.setText("");
                 } else {
@@ -56,6 +55,8 @@ public class New_Entry extends AppCompatActivity {
                 }
             }
         });
+
+
 
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -96,8 +97,8 @@ public class New_Entry extends AppCompatActivity {
         }
     };
 
-    public void addEntry(String newEntry) {
-        boolean insertData = mDataBaseHelper.addData(newEntry);
+    public void addEntry(String title, String content) {
+        boolean insertData = mDataBaseHelper.addData(title, content);
 
         if (insertData) {
             toastMessage("Entry Successfully Added!");
@@ -109,4 +110,10 @@ public class New_Entry extends AppCompatActivity {
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
+
+
+
+
+
 }
